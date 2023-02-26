@@ -55,3 +55,17 @@ template = replaceTemplate(template, "email", engineer.getEmail());
 template = replaceTemplate(template, "github", engineer.getGithub());
 return template;
 };
+
+// And for Intern
+
+const renderIntern = (intern)=> {
+    let template = fs.readFileSync(
+        path.resolve(templateDir, "intern.html"),"utf8"
+    );
+template = replaceTemplate(template, "name", intern.getName());
+template = replaceTemplate(template, "id", intern.getId());
+template = replaceTemplate(template, "role", intern.getRole());
+template = replaceTemplate(template, "email", intern.getEmail());
+template = replaceTemplate(template, "school", intern.getSchool());
+return template;
+};
