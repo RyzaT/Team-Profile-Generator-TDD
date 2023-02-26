@@ -14,8 +14,43 @@ const render = require("./src/page-template.js");
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
 // Create manager 1st?
+const createManager = async() => {
+    const managerQuestions = [
+        {
+            type: "input",
+            message: "Managers Name?",
+            name: "name",
+            validate: validateInput,
+        },
+        {
+            type: "input",
+            message: "Enter employee ID:",
+            name: "id",
+            validate: validateInput,
+        },
+        {
+            type: "input",
+            message: "What's your office number?",
+            name: "office",
+            validate: validateInput,
+        },
+        {
+            type: "input",
+            message: "Enter work Email:",
+            name: "email",
+            validate: validateInput
+        },
+    ];
+    // answers generated from manager questions
+    const managerAnswers = await inquirer.prompt(managerQuestions);
+    // new manager class takes manager answers
+    const manager = new Manager(managerAnswers);
+    // push manager into employees array
+    employees.push(manager);
+}
 
-// Create employees
+
+// Create ALL employees
 const employees =[]; // puts employees as an empty array
 
 // Need to allow team to be compleated
