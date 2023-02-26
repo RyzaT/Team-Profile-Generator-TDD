@@ -37,4 +37,6 @@ template = replaceTemplate(template, "name", manager.getName());
 template = replaceTemplate(template, "id", manager.getId());
 template = replaceTemplate(template, "role", manager.getRole());
 template = replaceTemplate(template, "email", manager.getEmail());
-}
+template = replaceTemplate(template, "office", manager.getOffice());
+return template;
+};
