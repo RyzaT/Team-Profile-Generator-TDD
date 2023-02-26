@@ -47,7 +47,7 @@ const createManager = async() => {
     const manager = new Manager(managerAnswers);
     // push manager into employees array
     employees.push(manager);
-}
+};
 
 // Create engineer
 const createEngineer = async()=> {
@@ -82,7 +82,41 @@ const createEngineer = async()=> {
     const engineer = new Engineer(engineerAnswers);
     // Push engineer into employee array
     employees.push(engineer);
-}
+};
+// create intern
+const createIntern = async()=> {
+    const internQuestions =[
+        {
+            type: "input",
+            message: "Intern's Name?",
+            name: "name",
+            validate: validateInput,
+        },
+        {
+            type: "input",
+            message: "Enter employee ID:",
+            name: "id",
+            validate: validateInput,
+        },
+        {
+            type: "input",
+            message: "Intern's Email:",
+            name: "email",
+            validate: validateInput,
+        },
+        {
+            type: "input",
+            message: "Which school is the intern from?",
+            name: "school",
+            validate: validateInput,
+        },
+    ];
+    // answers generated from questions
+    const internAnswers = await inquirer.prompt(internQuestions);
+    const intern = new Intern(internAnswers);
+    // Push engineer into employee array
+    employees.push(intern);
+};
 
 // Create ALL employees
 const employees =[]; // puts employees as an empty array
@@ -119,7 +153,7 @@ const init = async()=>{
             await createIntern();
         }
     }
-}
+};
 // Pass employee array to generate html
 const HTML = generateHTML(employees);
 fs.writeFileSync("team-profile.html", HTML,  (err)=>{
