@@ -12,7 +12,14 @@ const render = require("./src/page-template.js");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
+
+// Create manager 1st?
+
+// Create employees
 const employees =[]; // puts employees as an empty array
+
+// Need to allow team to be compleated
+let teamCompleate = false
 
 // function to initialise the app
 const init = async()=>{
@@ -34,6 +41,23 @@ const init = async()=>{
     const {employeeType} = await inquirer.createPromptModule(employeeQuestions);
     // 'none' compleates team
     if(employeeType === "none"){
-        
+        teamCompleate = true; 
+    }else {
+        if (employeeType === "engineer"){
+            await createEngineer();
+        }
+        if (employeeType === "intern"){
+            await createIntern();
+        }
     }
 }
+// Pass employee array to generate html
+const HTML = generateHTML(employees);
+fs.writeFileSync("team-profile.html", HTML,  (err)=>{
+    if (err){
+        console.log(err); // to log is theres an error
+
+    }else{
+        console.log("HTML created succesfully");
+    }
+    });
