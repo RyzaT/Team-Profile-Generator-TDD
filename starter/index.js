@@ -59,16 +59,7 @@ const init = async()=>{
         }
     }
 };
-// Pass employee array to generate html
-const HTML = generateHTML(employees);
-fs.writeFileSync("team.html", HTML,  (err)=>{
-    if (err){
-        console.log(err); // to log is theres an error
 
-    }else{
-        console.log("HTML created succesfully");
-    }
-    });
 // Create manager 1st?
 const createManager = async() => {
     const managerQuestions = [
@@ -174,7 +165,17 @@ const createIntern = async()=> {
     employees.push(intern);
 };
 
+// Pass employee array to generate html
+const HTML = generateHTML(employees);
+fs.writeFileSync("team.html", HTML,  (err)=>{
+    if (err){
+        console.log(err); // to log is theres an error
+
+    }else{
+        console.log("HTML created succesfully");
+    }
+    });
 
 
     // Function to initialise app
-    init();
+init();
