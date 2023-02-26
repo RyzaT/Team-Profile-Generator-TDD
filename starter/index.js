@@ -49,6 +49,40 @@ const createManager = async() => {
     employees.push(manager);
 }
 
+// Create engineer
+const createEngineer = async()=> {
+    const engineerQuestions =[
+        {
+            type: "input",
+            message: "Engineers Name?",
+            name: "name",
+            validate: validateInput,
+        },
+        {
+            type: "input",
+            message: "Enter employee ID:",
+            name: "id",
+            validate: validateInput,
+        },
+        {
+            type: "input",
+            message: "Engineers Email:",
+            name: "email",
+            validate: validateInput,
+        },
+        {
+            type: "input",
+            message: "Engineers GitHub Username:",
+            name: "github",
+            validate: validateInput,
+        },
+    ];
+    // answers generated from questions
+    const engineerAnswers = await inquirer.prompt(engineerQuestions);
+    const engineer = new Engineer(engineerAnswers);
+    // Push engineer into employee array
+    employees.push(engineer);
+}
 
 // Create ALL employees
 const employees =[]; // puts employees as an empty array
