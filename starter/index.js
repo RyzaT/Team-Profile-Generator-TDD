@@ -19,7 +19,7 @@ const render = require("./src/page-template.js");
 const employees = []; // puts employees as an empty array
 
 // Need to allow team to be compleated
-// let teamCompleate = false
+let teamCompleate = false
 
 // // validate input function
 const validateInput = (userInput) => {
@@ -57,7 +57,101 @@ const managerQuestions = [
             name: "email",
             validate: validateInput
         },
+];
+// Employee Questions
+const employeeQuestions = [
+    {
+        type: "list",
+        message: "Which type of employee do you wish to add?",
+        name: "employeeType",
+        choices: [
+            "Engineer",
+            "Intern",
+            "None",       
     ]
+}];
+// Engineer questions
+const engineerQuestions = [
+    {
+        type: "input",
+        message: "Engineers Name?",
+        name: "name",
+        validate: validateInput,
+    },
+    {
+        type: "input",
+        message: "Enter employee ID:",
+        name: "id",
+        validate: validateInput,
+    },
+    {
+        type: "input",
+        message: "Engineers Email:",
+        name: "email",
+        validate: validateInput,
+    },
+    {
+        type: "input",
+        message: "Engineers GitHub Username:",
+        name: "github",
+        validate: validateInput,
+    },
+];
+
+// Intern Questions
+const internQuestions = [
+    {
+        type: "input",
+        message: "Intern's Name?",
+        name: "name",
+        validate: validateInput,
+    },
+    {
+        type: "input",
+        message: "Enter employee ID:",
+        name: "id",
+        validate: validateInput,
+    },
+    {
+        type: "input",
+        message: "Intern's Email:",
+        name: "email",
+        validate: validateInput,
+    },
+    {
+        type: "input",
+        message: "Which school is the intern from?",
+        name: "school",
+        validate: validateInput,
+    },
+];
+
+
+// prompt for next employee ()
+function promptForNextEmployee() {
+    // console.log()
+    inquirer.prompt(employeeQuestions)
+
+    .then((response) => {
+        if (response.option === "Engineer") {
+            createEngineer();
+        } else if (response.option === "Intern") {
+                createIntern();
+            }
+            else (response.option === "None") 
+               let teamCompleate = true
+
+               if (teamCompleate = true) {
+                !fs.existsSync(OUTPUT_DIR) 
+                fs.mkdirSync(OUTPUT_DIR);
+                
+            fs.writeFile(outputPath, render(employees), (err) =>
+            err ? console.log(err) : console.log("Your Team has been Created")
+            );
+        }      
+    });
+}  
+
 // }])
 // populate manager info
 function createManager() {
@@ -73,73 +167,7 @@ function createManager() {
         promptForNextEmployee();
     });
 }
-const employeeQuestions = [
-    {
-        type: "list",
-        message: "Which type of employee do you wish to add?",
-        name: "employeeType",
-        choices: [
-            { name: "Engineer", value: "engineer" },
-            { name: "Intern", value: "intern" },
-            { name: "None", value: "none" },
-        ]
-    }
-]
-
-// prompt for next employee ()
-function promptForNextEmployee() {
-    console.log()
-    inquirer.prompt(employeeQuestions)
-        //choice of 3
-
-        .then((response) => {
-            if (response.option === "Engineer") {
-                createEngineer();
-            } else if (response.option === "Intern") {
-                    createIntern();
-                }
-                else {
-                    if(!fs.existsSync(OUTPUT_DIR)) {
-                        fs.mkdirSync(OUTPUT_DIR);
-                    };
-                    fs.writeFile(outputPath, render(employees), (err) =>
-                    err ? console.log(err) : console.log("Your Team has been Created")
-                    );
-                };   
-        });
-}
-
-
-// inquirer.prompt([{
-    // engineer questions
-const engineerQuestions = [
-        {
-            type: "input",
-            message: "Engineers Name?",
-            name: "name",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Enter employee ID:",
-            name: "id",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Engineers Email:",
-            name: "email",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Engineers GitHub Username:",
-            name: "github",
-            validate: validateInput,
-        },
-    ]
-// }
-// ])
+// To Create Engineer
 function createEngineer() {
     inquirer.prompt(engineerQuestions).then((response) => {
         employees.push(
@@ -154,37 +182,7 @@ function createEngineer() {
     });
 }
 
-// inquirer.prompt([{
-    // intern questions
- const internQuestions = [
-        {
-            type: "input",
-            message: "Intern's Name?",
-            name: "name",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Enter employee ID:",
-            name: "id",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Intern's Email:",
-            name: "email",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Which school is the intern from?",
-            name: "school",
-            validate: validateInput,
-        },
-    ]
-// }
-//     ])
-
+// To Create Intern
 function createIntern() {
     inquirer.prompt(internQuestions).then((response) => {
         employees.push(
@@ -198,6 +196,26 @@ function createIntern() {
         promptForNextEmployee();
     })
 };
+
+
+    
+
+
+
+// inquirer.prompt([{
+    // engineer questions
+
+// }
+// ])
+
+
+// inquirer.prompt([{
+    // intern questions
+ 
+// }
+//     ])
+
+
 
 
 createManager();
