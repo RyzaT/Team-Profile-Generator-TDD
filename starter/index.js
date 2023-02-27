@@ -4,7 +4,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-const generateHTML = require("./output/generateHTML");
+// const generateHTML = require("./output/generateHTML");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -32,6 +32,7 @@ const validateInput = (userInput) => {
 // function to initialise the app
 const init = async()=>{
     await createManager();
+    
     // Employee Questions
     const employeeQuestions = [
         {
@@ -166,16 +167,26 @@ const createIntern = async()=> {
 };
 
 // Pass employee array to generate html
-const HTML = generateHTML(employees);
-fs.writeFileSync("team.html", HTML,  (err)=>{
-    if (err){
-        console.log(err); // to log is theres an error
+// const HTML = (employees);
+// fs.writeFileSync("team.html", HTML,  (err)=>{
+//     if (err){
+//         console.log(err); // to log is theres an error
 
-    }else{
-        console.log("HTML created succesfully");
-    }
-    });
+//     }else{
+//         console.log("HTML created succesfully");
+//     }
+//     });
 
 
+// function writeToFile(__filename, data) {
+//     return fs.writeFileSync(path.join(process.cwd(), __filename), data);
+// };
+
+// function init() {
+//     inquirer.prompt(managerQuestions).then((employeeQuestions) => {
+//         console.log("Creating your team");
+//         writeToFile("../output", generateTeam(employees));
+//     });
+// };
     // Function to initialise app
 init();

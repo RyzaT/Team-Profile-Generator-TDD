@@ -69,3 +69,19 @@ template = replaceTemplate(template, "email", intern.getEmail());
 template = replaceTemplate(template, "school", intern.getSchool());
 return template;
 };
+
+//render the markdown
+const renderMarkdown = (HTML) => {
+    let template = fs.readFileSync(
+        path.resolve(templateDir, "markdown.html"), "utf8"
+    );
+    return replaceTemplate(template, "team", HTML);
+};
+
+const  replaceTemplate = (template, placeholder, value) => {
+    const pattern = new RegExp(`{{${placeholder}}}`, "gm");
+    return template.replace(pattern, value);
+};
+
+// GenerateHTML is exported for index.js
+module.exports = generateHTML;
