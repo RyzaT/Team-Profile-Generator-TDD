@@ -30,9 +30,9 @@ const validateInput = (userInput) => {
     }
 };
 
-inquirer.prompt([{
+// inquirer.prompt([{
 
-    managerQuestions : [
+const managerQuestions = [
         {
             type: "input",
             message: "Managers Name?",
@@ -58,7 +58,7 @@ inquirer.prompt([{
             validate: validateInput
         },
     ]
-}])
+// }])
 // populate manager info
 function createManager() {
     inquirer.prompt(managerQuestions).then((response) => {
@@ -110,9 +110,9 @@ function promptForNextEmployee() {
 }
 
 
-inquirer.prompt([{
+// inquirer.prompt([{
     // engineer questions
-    engineerQuestions : [
+const engineerQuestions = [
         {
             type: "input",
             message: "Engineers Name?",
@@ -138,8 +138,8 @@ inquirer.prompt([{
             validate: validateInput,
         },
     ]
-}
-])
+// }
+// ])
 function createEngineer() {
     inquirer.prompt(engineerQuestions).then((response) => {
         employees.push(
@@ -154,9 +154,9 @@ function createEngineer() {
     });
 }
 
-inquirer.prompt([{
+// inquirer.prompt([{
     // intern questions
-    internQuestions : [
+ const internQuestions = [
         {
             type: "input",
             message: "Intern's Name?",
@@ -182,8 +182,8 @@ inquirer.prompt([{
             validate: validateInput,
         },
     ]
-}
-    ])
+// }
+//     ])
 
 function createIntern() {
     inquirer.prompt(internQuestions).then((response) => {
