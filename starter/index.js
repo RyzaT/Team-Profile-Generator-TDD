@@ -10,6 +10,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
+const { info } = require("console");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
@@ -18,17 +19,86 @@ const render = require("./src/page-template.js");
 const employees =[]; // puts employees as an empty array
 
 // Need to allow team to be compleated
-let teamCompleate = false
+// let teamCompleate = false
 
-// validate input function
-const validateInput = (userInput) => {
-    if (userInput === ""){
-        return "Please type and answer to continue";
-    }else{
-        return true;
-    }
-};
+// // validate input function
+// const validateInput = (userInput) => {
+//     if (userInput === ""){
+//         return "Please type and answer to continue";
+//     }else{
+//         return true;
+//     }
+// };
 
+inquirer.prompt([{
+    // const: createManager = async() => {
+        const: managerQuestions = [
+            {
+                type: "input",
+                message: "Managers Name?",
+                name: "name",
+                validate: validateInput,
+            },
+            {
+                type: "input",
+                message: "Enter employee ID:",
+                name: "id",
+                validate: validateInput,
+            },
+            {
+                type: "input",
+                message: "What's your office number?",
+                name: "office",
+                validate: validateInput,
+            },
+            {
+                type: "input",
+                message: "Enter work Email:",
+                name: "email",
+                validate: validateInput
+            },
+        ]
+}]).then(response => {
+    // populate manager info
+    // prompt for next employee ()
+})
+
+const promptForNextEmployee = () => {
+    inquirer.prompt([{
+        //choice of 3
+    }]).then(response => {
+        //if engineer
+        //prompt for engineer
+        //else if intern
+        // prompt for intern
+        // esle
+        // use the functionality from page-template to generate the team
+    })
+}
+
+const promptForEngineer  = () => {
+    inquirer.prompt([{
+        // engineer questions
+    }]).then(response => {
+        // add new engineer to employees array
+        // prompt for next employee
+    })
+}
+
+const promptForIntern = () => {
+    inquirer.prompt([{
+        // engineer questions
+    }]).then(response => {
+        // add new engineer to employees array
+        // prompt for next employee
+    })
+}
+
+const buildPage = () => {
+
+}
+
+// --------- Old workings ----------
 // function to initialise the app
 const init = async()=>{
     await createManager();
@@ -62,33 +132,7 @@ const init = async()=>{
 };
 
 // Create manager 1st?
-const createManager = async() => {
-    const managerQuestions = [
-        {
-            type: "input",
-            message: "Managers Name?",
-            name: "name",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Enter employee ID:",
-            name: "id",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "What's your office number?",
-            name: "office",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Enter work Email:",
-            name: "email",
-            validate: validateInput
-        },
-    ];
+
     // answers generated from manager questions
     const managerAnswers = await inquirer.prompt(managerQuestions);
     // new manager class takes manager answers
