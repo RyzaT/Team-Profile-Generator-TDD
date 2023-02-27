@@ -17,7 +17,7 @@ A Team Profile Generator made with test driven develpoment (TDD)
 This is a way to create a HTML with all your team members displayed and is made through Terminal
 
 ## Screenshot
-![alt - text] <img src=()/>
+![alt - text] <img src=(/Users/mymacbookair/Documents/GitHub/Team-Profile-Generator-TDD/assets/Screenshot 2023-02-27 at 23.37.26.png)/>
 
 ## Requirements
 This application requires the inquirer and jest npm's
