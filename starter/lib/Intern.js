@@ -4,8 +4,8 @@ const Employee = require("./Employee")
 
 //Engineer is an extension of emlpoyee class
 class Intern extends Employee{
-    constructor({name, id, email, school}) {
-        super({name, email, id}); // gets info from parent
+    constructor(name, id, email, school) {
+        super(name, email, id); // gets info from parent
         this.school = school; // adds school
         this.role = "Intern"; // 'role' will define job role
     }
