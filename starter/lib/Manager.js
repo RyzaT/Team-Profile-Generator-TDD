@@ -7,7 +7,7 @@ class Manager extends Employee{
     constructor({name, id, email, office}) {
         super({name, email, id}); // gets info from parent
         this.office = office; // adds office
-        this.role = "Team Manager"; // 'role' will define job role
+        this.role = "Manager"; // 'role' will define job role
     }
     // return github user profile
     getOffice(){
