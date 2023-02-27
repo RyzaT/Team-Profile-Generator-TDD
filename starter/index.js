@@ -19,20 +19,20 @@ const { info } = require("console");
 const employees =[]; // puts employees as an empty array
 
 // Need to allow team to be compleated
-// let teamCompleate = false
+let teamCompleate = false
 
 // // validate input function
-// const validateInput = (userInput) => {
-//     if (userInput === ""){
-//         return "Please type and answer to continue";
-//     }else{
-//         return true;
-//     }
-// };
+const validateInput = (userInput) => {
+    if (userInput === ""){
+        return "Please type and answer to continue";
+    }else{
+        return true;
+    }
+};
 
 inquirer.prompt([{
-    // const: createManager = async() => {
-        const: managerQuestions = [
+     const: createManager = async() => {
+        managerQuestions = [
             {
                 type: "input",
                 message: "Managers Name?",
@@ -57,16 +57,45 @@ inquirer.prompt([{
                 name: "email",
                 validate: validateInput
             },
-        ]
-}]).then(response => {
+        ]}
+}]).then(Manager => {
     // populate manager info
-    // prompt for next employee ()
+    const managerAnswers = inquirer.prompt(managerQuestions);
+    // new manager class takes manager answers
+    const manager = new Manager(managerAnswers);
+    // push manager into employees array
+    employees.push(manager);
 })
+    // prompt for next employee ()
+    promptForNextEmployee();
 
 const promptForNextEmployee = () => {
     inquirer.prompt([{
         //choice of 3
-    }]).then(response => {
+        const: employeeQuestions = [
+            {
+                type: "list",
+                message: "Which type of employee do you wish to add?",
+                name: "employeeType",
+                choices: [
+                    {name:"Engineer", value:"engineer"},
+                    {name:"Intern", value:"intern"},
+                    {name:"None", value:"none"},
+                ]
+            }
+        ]
+    }]).then(employeeType => {
+        if(employeeType === "none"){
+            teamCompleate = true; 
+        }else {
+            if (employeeType === "engineer"){
+                createEngineer();
+            }
+            if (employeeType === "intern"){
+                createIntern();
+            }
+        }
+    
         //if engineer
         //prompt for engineer
         //else if intern
@@ -76,20 +105,87 @@ const promptForNextEmployee = () => {
     })
 }
 
-const promptForEngineer  = () => {
+const createEngineer  = () => {
     inquirer.prompt([{
         // engineer questions
-    }]).then(response => {
+        const: createEngineer = async()=> {
+            engineerQuestions =[
+                {
+                    type: "input",
+                    message: "Engineers Name?",
+                    name: "name",
+                    validate: validateInput,
+                },
+                {
+                    type: "input",
+                    message: "Enter employee ID:",
+                    name: "id",
+                    validate: validateInput,
+                },
+                {
+                    type: "input",
+                    message: "Engineers Email:",
+                    name: "email",
+                    validate: validateInput,
+                },
+                {
+                    type: "input",
+                    message: "Engineers GitHub Username:",
+                    name: "github",
+                    validate: validateInput,
+                },
+            ]}
+    }]).then(Engineer => {
         // add new engineer to employees array
-        // prompt for next employee
+        // answers generated from questions
+    const engineerAnswers = inquirer.prompt(engineerQuestions);
+    const engineer = new Engineer(engineerAnswers);
+    // Push engineer into employee array
+    employees.push(engineer);
     })
+        // prompt for next employee
+    
 }
 
-const promptForIntern = () => {
+const createIntern = () => {
     inquirer.prompt([{
-        // engineer questions
-    }]).then(response => {
-        // add new engineer to employees array
+        // intern questions
+        const: createIntern = async()=> {
+            internQuestions =[
+                {
+                    type: "input",
+                    message: "Intern's Name?",
+                    name: "name",
+                    validate: validateInput,
+                },
+                {
+                    type: "input",
+                    message: "Enter employee ID:",
+                    name: "id",
+                    validate: validateInput,
+                },
+                {
+                    type: "input",
+                    message: "Intern's Email:",
+                    name: "email",
+                    validate: validateInput,
+                },
+                {
+                    type: "input",
+                    message: "Which school is the intern from?",
+                    name: "school",
+                    validate: validateInput,
+                },
+            ];
+            // answers generated from questions
+            
+            
+        }
+    }]).then(Intern => {
+        const internAnswers = inquirer.prompt(internQuestions);
+            const intern = new Intern(internAnswers);
+        // Push intern into employee array
+        employees.push(intern);
         // prompt for next employee
     })
 }
@@ -100,115 +196,25 @@ const buildPage = () => {
 
 // --------- Old workings ----------
 // function to initialise the app
-const init = async()=>{
-    await createManager();
+// const init = async()=>{
+//     await createManager();
     
     // Employee Questions
-    const employeeQuestions = [
-        {
-            type: "list",
-            message: "Which type of employee do you wish to add?",
-            name: "employeeType",
-            choices: [
-                {name:"Engineer", value:"engineer"},
-                {name:"Intern", value:"intern"},
-                {name:"None", value:"none"},
-            ]
-        }
-    ]
+    
     // generate questions
-    const {employeeType} = await inquirer.createPromptModule(employeeQuestions);
+    // const {employeeType} = inquirer.createPromptModule(employeeQuestions);
     // 'none' compleates team
-    if(employeeType === "none"){
-        teamCompleate = true; 
-    }else {
-        if (employeeType === "engineer"){
-            await createEngineer();
-        }
-        if (employeeType === "intern"){
-            await createIntern();
-        }
-    }
-};
+    
 
 // Create manager 1st?
 
-    // answers generated from manager questions
-    const managerAnswers = await inquirer.prompt(managerQuestions);
-    // new manager class takes manager answers
-    const manager = new Manager(managerAnswers);
-    // push manager into employees array
-    employees.push(manager);
-};
+    
 
 // Create engineer
-const createEngineer = async()=> {
-    const engineerQuestions =[
-        {
-            type: "input",
-            message: "Engineers Name?",
-            name: "name",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Enter employee ID:",
-            name: "id",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Engineers Email:",
-            name: "email",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Engineers GitHub Username:",
-            name: "github",
-            validate: validateInput,
-        },
-    ];
-    // answers generated from questions
-    const engineerAnswers = await inquirer.prompt(engineerQuestions);
-    const engineer = new Engineer(engineerAnswers);
-    // Push engineer into employee array
-    employees.push(engineer);
-};
+
+    
 // create intern
-const createIntern = async()=> {
-    const internQuestions =[
-        {
-            type: "input",
-            message: "Intern's Name?",
-            name: "name",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Enter employee ID:",
-            name: "id",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Intern's Email:",
-            name: "email",
-            validate: validateInput,
-        },
-        {
-            type: "input",
-            message: "Which school is the intern from?",
-            name: "school",
-            validate: validateInput,
-        },
-    ];
-    // answers generated from questions
-    const internAnswers = await inquirer.prompt(internQuestions);
-    const intern = new Intern(internAnswers);
-    // Push engineer into employee array
-    employees.push(intern);
-};
+
 
 // Pass employee array to generate html
 // const HTML = (employees);
