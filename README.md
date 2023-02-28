@@ -8,7 +8,7 @@ A Team Profile Generator made with test driven develpoment (TDD)
   * [Description](#description)
   * [Requirements](#require)
   * [Usage](#usage)
-  * [Questions & Contact - Me](#contact - me)
+  * [Contact - Me](#contact - me)
   * [Contributers](#contributors)
   * [Testing](#test)
 
@@ -17,7 +17,7 @@ A Team Profile Generator made with test driven develpoment (TDD)
 This is a way to create a HTML with all your team members displayed and is made through Terminal
 
 ## Screenshot
-![alt - text] <img src=(/Users/mymacbookair/Documents/GitHub/Team-Profile-Generator-TDD/assets/Screenshot 2023-02-27 at 23.37.26.png)/>
+![alt - text] (https://github.com/RyzaT/Team-Profile-Generator-TDD/blob/main/assets/Screenshot%202023-02-27%20at%2023.37.26.png)
 
 ## Requirements
 This application requires the inquirer and jest npm's
