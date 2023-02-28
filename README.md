@@ -35,7 +35,7 @@ I have used youtube, Mozilla Developer Network and W3 schools websites to help m
 
 ## Testing
 A test folder is provided and runs trough jest.
-![Test Screen Grab] 
+![Test Screen Grab] (https://github.com/RyzaT/Team-Profile-Generator-TDD/blob/main/assets/screengrab.png?raw=true)
 
 
 ## License
