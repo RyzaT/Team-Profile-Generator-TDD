@@ -17,7 +17,7 @@ A Team Profile Generator made with test driven develpoment (TDD)
 This is a way to create a HTML with all your team members displayed and is made through Terminal
 
 ## Screenshot
-![alt - text] (https://github.com/RyzaT/Team-Profile-Generator-TDD/blob/main/assets/Screenshot%202023-02-27%20at%2023.37.26.png?raw=true) ("Screenshot")
+<img src="assets/screenshot.png" alt="Alt text" title="Screenshot">
 
 ## Requirements
 This application requires the inquirer and jest npm's
@@ -35,8 +35,7 @@ I have used youtube, Mozilla Developer Network and W3 schools websites to help m
 
 ## Testing
 A test folder is provided and runs trough jest.
-![alt - text] (https://github.com/RyzaT/Team-Profile-Generator-TDD/blob/main/assets/screengrab.png?raw=true) (Test result)
-
+<img src="assets/screengrab.png" alt="Alt text" title="Testing Results">
 
 ## License
   License used for this project - MIT
