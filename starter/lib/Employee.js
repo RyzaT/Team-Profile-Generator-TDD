@@ -4,6 +4,7 @@ class Employee {
         this.name = name;
         this.id = id;
         this.email = email;
+        this.role = "Employee";
     }
     // retrieve the name for employee input
     getName(){
@@ -16,6 +17,9 @@ class Employee {
     // retrieve the email for employee input
     getEmail(){
         return this.email;
+    }
+    getRole(){
+        return this.role;
     }
 }
 // Export employee data for generateing html
